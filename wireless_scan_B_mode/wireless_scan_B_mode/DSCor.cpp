@@ -66,7 +66,7 @@ bool CDSCor::InitGama(float gama)
             y = 0.0;
         if (y>1.0)
             y = 1.0;
-        y *= 255.0*(256.0);               //qua
+        y *= 255.0*(256.0);               //gama  format 
         m_unGama[i] = (int)y;
     }
     return true;
@@ -493,7 +493,7 @@ unsigned char* CDSCor::DSCImage(unsigned char* pRawData)
                 }
                 
             }
-            else {
+            else {                     //未做二次插值
                 int nImagePos;
                 nImagePos = nDSCImagePos + (x<<2);
                 m_pDSCImage[nImagePos+3] = 255;

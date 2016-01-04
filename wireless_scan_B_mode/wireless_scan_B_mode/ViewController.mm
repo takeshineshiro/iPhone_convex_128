@@ -188,7 +188,8 @@
     m_ucZoom = m_ucSndZoom;
     
     //  初始化空白图像
-    nullImage = [[RawImag alloc]init];
+    nullImage = [[RawImag alloc] init];
+    nullImage.frame  = CGRectMake(self.scanImg.frame.origin.x, self.scanImg.frame.origin.y, 680,350);
     nullImage.probeType = m_nProbeType;
     nullImage.zoom = m_ucSndZoom;
     nullImage.gain = m_ucSndGain;
@@ -1156,6 +1157,9 @@
     newDateStr = [newDateStr substringToIndex:newDateStr.length-6];
     
     RawImag* newgotimg = [[RawImag alloc] init];
+
+    newgotimg.frame   =   CGRectMake(self.scanImg.frame.origin.x, self.scanImg.frame.origin.y, 680,350);
+    
     newgotimg.rawData = pData;
     newgotimg.zoom = m_ucZoom;
     newgotimg.gain = m_ucGain;
@@ -1264,7 +1268,7 @@
     //  绘制渐变图
     //UIImage* imgJianBian = [self drawImageForGradient:nil];
     
-    [gradientImage drawInRect:CGRectMake(3, 0, 8,  self.scanImg.frame.size.height)];
+    [gradientImage drawInRect:CGRectMake(2, 0, 4,  self.scanImg.frame.size.height)];
     
     /*
      unsigned char gnd[256];
@@ -1552,14 +1556,14 @@
 -(void)repositionByHand
 {
     if (!m_bLeftHand) {
-        //  左手操作界面布置
+        //  右手操作界面布置
         self.scanImg.frame = CGRectMake(0, 20, 680, 350);
         self.imgLogo.frame = CGRectMake(680, 20, 56, 40);
         sideSlider.frame = CGRectMake(698,130,20, 235);
         self.btnFrozen.frame = CGRectMake(680, 68, 56, 56);
         self.lableLine.frame = CGRectMake(680, 62, 60, 1);
     } else {
-        //  右手操作界面布置
+        //  左手操作界面布置
         self.scanImg.frame = CGRectMake(60, 20, 680, 350);
         self.imgLogo.frame = CGRectMake(0, 20, 56, 40);
         sideSlider.frame = CGRectMake(18,130,20, 235);
@@ -1764,6 +1768,7 @@
     NSUInteger bitsPerComponent = 8;
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
     CGContextRef bitmapContext = CGBitmapContextCreate(drawImg,w,h,bitsPerComponent,bytesPerRow,
                                                        colorSpace,
                                                        kCGImageAlphaPremultipliedLast);
@@ -1817,19 +1822,19 @@
                 tmpdepth = @"___mm";
                 break;
         }
-    } else if (raw.probeType == CDSCor::PROBE_SECTORARRAY) {
+    } else if (raw.probeType == CDSCor::PROBE_LINEARARRAY) {
         switch (raw.zoom) {
             case 0:
-                tmpdepth = @"90mm";
+                tmpdepth = @"20mm";
                 break;
             case 1:
-                tmpdepth = @"120mm";
+                tmpdepth = @"40mm";
                 break;
             case 2:
-                tmpdepth = @"160mm";
+                tmpdepth = @"60mm";
                 break;
             case 3:
-                tmpdepth = @"200mm";
+                tmpdepth = @"80mm";
                 break;
             default:
                 tmpdepth = @"___mm";

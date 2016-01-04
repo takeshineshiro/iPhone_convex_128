@@ -7,7 +7,9 @@
 //
 #import <Foundation/Foundation.h>
 
-@interface RawImag : NSObject
+#import <UIKit/UIKit.h>
+
+@interface RawImag :   UIView
 
 @property (nonatomic) NSInteger probeType;
 
