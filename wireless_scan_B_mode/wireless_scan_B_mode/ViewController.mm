@@ -160,7 +160,7 @@
     m_strSSID = @"";
     m_bSSIDValid = NO;
     m_bConnected = NO;
-    m_bLeftHand = NO;
+    m_bLeftHand = YES;
     m_bRunning = NO;
     m_nSndRunning = -1; //  无需发送状态
     m_bHaveImage = NO;
@@ -1551,7 +1551,7 @@
 
 -(void)repositionByHand
 {
-    if (m_bLeftHand) {
+    if (!m_bLeftHand) {
         //  左手操作界面布置
         self.scanImg.frame = CGRectMake(0, 20, 680, 350);
         self.imgLogo.frame = CGRectMake(680, 20, 56, 40);
